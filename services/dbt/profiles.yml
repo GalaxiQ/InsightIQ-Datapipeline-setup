@@ -1,0 +1,12 @@
+insightiq:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: tenant_db
+      port: 5432
+      user: insightiq
+      password: insightiq
+      dbname: brand_intelligence
+      schema: analytics
+      threads: 4

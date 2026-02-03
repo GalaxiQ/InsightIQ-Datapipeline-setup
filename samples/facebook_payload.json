@@ -1,0 +1,274 @@
+{
+  "db": {
+    "host": "localhost",
+    "port": 5432,
+    "db_name": "brand_intelligence",
+    "user": "nitizz",
+    "password": ""
+  },  "brand_id": "cordori",
+  "platform": "facebook",
+  "payload": {"id": "112233445566778",
+  "name": "Cordori",
+  "username": "cordori.official",
+  "category": "Clothing (Brand)",
+  "category_list": [
+    {
+      "id": "2209",
+      "name": "Clothing (Brand)"
+    }
+  ],
+  "about": "Cordori is a modern lifestyle footwear brand focused on lightweight comfort and everyday performance.",
+  "description": "We design premium sneakers that combine innovation, comfort, and modern style for people who move all day.",
+  "website": "https://cordori.com.au",
+  "verification_status": "not_verified",
+  "fan_count": 18450,
+  "followers_count": 19230,
+  "rating_count": 248,
+  "overall_star_rating": 4.6,
+  "created_time": "2022-04-18T10:12:44+0000",
+
+  "posts": {
+    "data": [
+
+      {
+        "id": "112233445566778_10001",
+        "created_time": "2026-01-05T08:12:33+0000",
+        "message": "Now Live 🚀\n\nThe world’s lightest sneaker is here.\nEngineered for all-day comfort and effortless movement.\n\n#Cordori #WorldsLightest #EverydayComfort",
+        "permalink_url": "https://www.facebook.com/cordori.official/posts/10001",
+        "reactions": { "summary": { "total_count": 1240 } },
+        "comments": { "summary": { "total_count": 86 } },
+        "shares": { "count": 54 },
+        "attachments": {
+          "data": [
+            {
+              "media_type": "photo",
+              "media": {
+                "image": {
+                  "src": "https://scontent.xx.fbcdn.net/cordori_post_01.jpg",
+                  "width": 1280,
+                  "height": 720
+                }
+              }
+            }
+          ]
+        }
+      },
+
+      {
+        "id": "112233445566778_10002",
+        "created_time": "2026-01-02T11:45:02+0000",
+        "message": "Designed for movement. Built for long days.\n\nSupport your stride from morning to night.\n\n#BuiltForMovement #CordoriComfort",
+        "permalink_url": "https://www.facebook.com/cordori.official/posts/10002",
+        "reactions": { "summary": { "total_count": 980 } },
+        "comments": { "summary": { "total_count": 41 } },
+        "shares": { "count": 29 },
+        "attachments": {
+          "data": [
+            {
+              "media_type": "photo",
+              "media": {
+                "image": {
+                  "src": "https://scontent.xx.fbcdn.net/cordori_post_02.jpg",
+                  "width": 1280,
+                  "height": 720
+                }
+              }
+            }
+          ]
+        }
+      },
+
+      {
+        "id": "112233445566778_10003",
+        "created_time": "2025-12-28T09:02:17+0000",
+        "message": "Sustainably crafted. Responsibly sourced.\n\nComfort that respects the planet.\n\n#SustainableFashion #Cordori",
+        "permalink_url": "https://www.facebook.com/cordori.official/posts/10003",
+        "reactions": { "summary": { "total_count": 1120 } },
+        "comments": { "summary": { "total_count": 63 } },
+        "shares": { "count": 47 },
+        "attachments": {
+          "data": [
+            {
+              "media_type": "photo",
+              "media": {
+                "image": {
+                  "src": "https://scontent.xx.fbcdn.net/cordori_post_03.jpg",
+                  "width": 1280,
+                  "height": 720
+                }
+              }
+            }
+          ]
+        }
+      },
+
+      {
+        "id": "112233445566778_10004",
+        "created_time": "2025-12-20T10:30:11+0000",
+        "message": "Meet the Cordori Core Series.\n\nLightweight cushioning. Everyday durability.\n\n#CordoriCore #ComfortRedefined",
+        "permalink_url": "https://www.facebook.com/cordori.official/posts/10004",
+        "reactions": { "summary": { "total_count": 760 } },
+        "comments": { "summary": { "total_count": 32 } },
+        "shares": { "count": 21 },
+        "attachments": {
+          "data": [
+            {
+              "media_type": "photo",
+              "media": {
+                "image": {
+                  "src": "https://scontent.xx.fbcdn.net/cordori_post_04.jpg",
+                  "width": 1280,
+                  "height": 720
+                }
+              }
+            }
+          ]
+        }
+      },
+
+      {
+        "id": "112233445566778_10005",
+        "created_time": "2025-12-12T07:55:49+0000",
+        "message": "Trusted by thousands of everyday movers worldwide.\n\nComfort that keeps up.\n\n#TrustedComfort #CordoriMovement",
+        "permalink_url": "https://www.facebook.com/cordori.official/posts/10005",
+        "reactions": { "summary": { "total_count": 890 } },
+        "comments": { "summary": { "total_count": 58 } },
+        "shares": { "count": 33 },
+        "attachments": {
+          "data": [
+            {
+              "media_type": "photo",
+              "media": {
+                "image": {
+                  "src": "https://scontent.xx.fbcdn.net/cordori_post_05.jpg",
+                  "width": 1280,
+                  "height": 720
+                }
+              }
+            }
+          ]
+        }
+      },
+
+      {
+        "id": "112233445566778_10006",
+        "created_time": "2025-12-01T14:18:03+0000",
+        "message": "Minimal design. Maximum comfort.\n\nCordori blends style with performance.\n\n#ModernFootwear #CordoriStyle",
+        "permalink_url": "https://www.facebook.com/cordori.official/posts/10006",
+        "reactions": { "summary": { "total_count": 640 } },
+        "comments": { "summary": { "total_count": 27 } },
+        "shares": { "count": 19 },
+        "attachments": {
+          "data": [
+            {
+              "media_type": "photo",
+              "media": {
+                "image": {
+                  "src": "https://scontent.xx.fbcdn.net/cordori_post_06.jpg",
+                  "width": 1280,
+                  "height": 720
+                }
+              }
+            }
+          ]
+        }
+      },
+
+      {
+        "id": "112233445566778_10007",
+        "created_time": "2025-11-20T09:40:10+0000",
+        "message": "Engineered cushioning meets breathable design.\n\nWalk longer. Feel better.\n\n#ComfortEngineering #Cordori",
+        "permalink_url": "https://www.facebook.com/cordori.official/posts/10007",
+        "reactions": { "summary": { "total_count": 720 } },
+        "comments": { "summary": { "total_count": 39 } },
+        "shares": { "count": 24 },
+        "attachments": {
+          "data": [
+            {
+              "media_type": "photo",
+              "media": {
+                "image": {
+                  "src": "https://scontent.xx.fbcdn.net/cordori_post_07.jpg",
+                  "width": 1280,
+                  "height": 720
+                }
+              }
+            }
+          ]
+        }
+      },
+
+      {
+        "id": "112233445566778_10008",
+        "created_time": "2025-11-10T06:22:55+0000",
+        "message": "From city streets to long travels — Cordori adapts.\n\n#EverydayPerformance #CordoriLife",
+        "permalink_url": "https://www.facebook.com/cordori.official/posts/10008",
+        "reactions": { "summary": { "total_count": 610 } },
+        "comments": { "summary": { "total_count": 22 } },
+        "shares": { "count": 17 },
+        "attachments": {
+          "data": [
+            {
+              "media_type": "photo",
+              "media": {
+                "image": {
+                  "src": "https://scontent.xx.fbcdn.net/cordori_post_08.jpg",
+                  "width": 1280,
+                  "height": 720
+                }
+              }
+            }
+          ]
+        }
+      },
+
+      {
+        "id": "112233445566778_10009",
+        "created_time": "2025-10-30T12:05:44+0000",
+        "message": "Comfort tested. Movement approved.\n\nBuilt for real life.\n\n#TestedComfort #CordoriApproved",
+        "permalink_url": "https://www.facebook.com/cordori.official/posts/10009",
+        "reactions": { "summary": { "total_count": 540 } },
+        "comments": { "summary": { "total_count": 19 } },
+        "shares": { "count": 13 },
+        "attachments": {
+          "data": [
+            {
+              "media_type": "photo",
+              "media": {
+                "image": {
+                  "src": "https://scontent.xx.fbcdn.net/cordori_post_09.jpg",
+                  "width": 1280,
+                  "height": 720
+                }
+              }
+            }
+          ]
+        }
+      },
+
+      {
+        "id": "112233445566778_10010",
+        "created_time": "2025-10-15T08:48:22+0000",
+        "message": "Cordori — where innovation meets everyday comfort.\n\nStep into smarter footwear.\n\n#InnovationInMotion #Cordori",
+        "permalink_url": "https://www.facebook.com/cordori.official/posts/10010",
+        "reactions": { "summary": { "total_count": 680 } },
+        "comments": { "summary": { "total_count": 35 } },
+        "shares": { "count": 26 },
+        "attachments": {
+          "data": [
+            {
+              "media_type": "photo",
+              "media": {
+                "image": {
+                  "src": "https://scontent.xx.fbcdn.net/cordori_post_10.jpg",
+                  "width": 1280,
+                  "height": 720
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}}

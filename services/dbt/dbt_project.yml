@@ -1,0 +1,12 @@
+name: insightiq_dbt
+version: "1.0"
+profile: insightiq
+
+models:
+  insightiq_dbt:
+    staging:
+      +materialized: incremental
+    marts:
+      +materialized: incremental
+    snapshots:
+      +materialized: table
