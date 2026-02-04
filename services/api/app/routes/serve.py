@@ -1,27 +1,28 @@
-from fastapi import APIRouter, Header, Depends, HTTPException
+from fastapi import APIRouter, HTTPException
 from sqlalchemy import text
+import logging
 
-from app.core.db import get_db
-from app.core.tenant_store import get_tenant_db
-from app.core.tenant_db import get_tenant_session
+from app.models.base_requests import FetchRequest
+from app.core.connection import get_session
 
 router = APIRouter()
+logger = logging.getLogger("serve")
 
-@router.get("/brands/{brand_id}/accounts")
-async def get_accounts(
-    brand_id: str,
-    x_tenant_id: str = Header(...),
-    master_db=Depends(get_db)
-):
-    try:
-        cfg = await get_tenant_db(master_db, x_tenant_id)
-    except Exception:
-        raise HTTPException(401, "Invalid tenant")
-
-    async for db in get_tenant_session(cfg):
-        res = await db.execute(text("""
-        SELECT name, followers, rating, last_updated
-        FROM dim_account
-        WHERE brand_id = :brand_id
-        """), {"brand_id": brand_id})
-        return [dict(r) for r in res]
+@router.post("/fetch")
+async def fetch_accounts(req: FetchRequest):
+    """
+    Fetches account data for a brand from the specified DB.
+    """
+    async with get_session(req.db_config) as db:
+        try:
+            res = await db.execute(text("""
+            SELECT name, followers, rating, last_updated
+            FROM dim_account
+            WHERE brand_id = :brand_id
+            """), {"brand_id": req.brand_id})
+            
+            return [dict(r) for r in res]
+            
+        except Exception as e:
+            logger.exception("Fetch failed")
+            raise HTTPException(500, f"Query failed: {str(e)}")

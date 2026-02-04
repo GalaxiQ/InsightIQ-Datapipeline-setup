@@ -4,3 +4,4 @@ sqlalchemy
 asyncpg
 pydantic-settings
 python-dotenv
+greenlet>=3.0.0

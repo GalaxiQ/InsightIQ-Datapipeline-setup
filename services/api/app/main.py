@@ -4,7 +4,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
 from app.core.settings import settings
-from app.routes import schema, ingest, serve, tenant
+from app.routes import schema, ingest, serve
 
 def setup_logging():
     logging.basicConfig(
@@ -19,7 +19,7 @@ logger = logging.getLogger("insightiq-api")
 app = FastAPI(
     title="InsightIQ Platform",
     version="1.0.0",
-    description="Multi-tenant ingestion + analytics + serving platform"
+    description="Stateless ingestion + analytics + serving platform"
 )
 
 @app.exception_handler(Exception)
@@ -34,10 +34,9 @@ async def global_exception_handler(request: Request, exc: Exception):
     )
 
 # Routes
-app.include_router(tenant, prefix="/tenant", tags=["Tenant"])
 app.include_router(schema, prefix="/schema", tags=["Schema"])
 app.include_router(ingest, prefix="/ingest", tags=["Ingest"])
-app.include_router(serve, tags=["Serve"])
+app.include_router(serve, prefix="/serve", tags=["Serve"])
 
 @app.on_event("startup")
 async def startup():

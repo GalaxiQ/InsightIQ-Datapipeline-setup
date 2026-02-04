@@ -1,32 +1,20 @@
-from fastapi import APIRouter, Header, Depends, HTTPException
+from fastapi import APIRouter, HTTPException
 from sqlalchemy import text
 import logging
 
-from app.core.db import get_db
-from app.core.tenant_store import get_tenant_db
-from app.core.tenant_db import get_tenant_session
+from app.models.base_requests import BootstrapRequest
+from app.core.connection import get_session
 
 router = APIRouter()
 logger = logging.getLogger("schema-bootstrap")
 
-
 @router.post("/bootstrap")
-async def bootstrap(
-    x_tenant_id: str = Header(...),
-    master_db=Depends(get_db)
-):
-    # -------------------------
-    # Resolve tenant config
-    # -------------------------
-    try:
-        cfg = await get_tenant_db(master_db, x_tenant_id)
-    except Exception:
-        raise HTTPException(status_code=401, detail="Invalid tenant")
-
-    # -------------------------
-    # Execute bootstrap safely
-    # -------------------------
-    async for db in get_tenant_session(cfg):
+async def bootstrap(req: BootstrapRequest):
+    """
+    Connects to the DB specified in payload and runs the bootstrap SQL.
+    This creates raw_events table.
+    """
+    async with get_session(req.db_config) as db:
         try:
             with open("sql/bootstrap.sql", "r") as f:
                 sql = f.read()
@@ -38,14 +26,12 @@ async def bootstrap(
                 await db.execute(text(stmt))
 
             await db.commit()
-            logger.info("Tenant schema bootstrap complete")
+            logger.info(f"Schema boostrap complete for db: {req.db_config.db_name}")
+            return {"status": "schema ready", "target_db": req.db_config.db_name}
 
         except Exception as e:
-            await db.rollback()
             logger.exception("Schema bootstrap failed")
             raise HTTPException(
-                status_code=500,
+                status_code=500, 
                 detail=f"Schema bootstrap failed: {str(e)}"
             )
-
-    return {"status": "schema ready"}
