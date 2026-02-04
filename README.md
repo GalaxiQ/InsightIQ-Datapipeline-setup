@@ -70,9 +70,13 @@ Create a new tenant organization. This registers them in the master DB.
 Create the raw data tables for the new tenant.
 
 **POST** `/schema/bootstrap`
-**Headers**: `x-tenant-id: <YOUR_TENANT_ID>`
+Use either:
+- **Body**: `{"tenant_id": "<YOUR_TENANT_ID>"}`
+- **or Header**: `x-tenant-id: <YOUR_TENANT_ID>`
 
-**Response**: `{"status": "schema ready"}`
+This creates tenant-isolated tables in schema `tenant_<tenant_id_with_underscores>`.
+
+**Response**: `{"status": "schema ready", "tenant_id": "...", "schema": "tenant_..."}`
 
 ### C. Ingest Data
 Push raw social media data into the system.
@@ -130,8 +134,21 @@ dbt build --profiles-dir .
 
 This will:
 1.  Read `raw_events` logic from `models/staging`.
-2.  Populate `dim_account` and `fct_posts` in the `analytics` schema.
+2.  Populate `dim_account` and `fct_posts` in the tenant schema you run with.
 3.  Run any defined data tests.
+
+### Run dbt per tenant via API
+You can trigger dbt for a tenant schema directly from API.
+
+**POST** `/transform/run`
+```json
+{
+  "tenant_id": "<YOUR_TENANT_ID>",
+  "full_refresh": false
+}
+```
+
+This runs dbt with `tenant_schema=tenant_<tenant_id_with_underscores>`.
 
 ## 5. Fetch Insights
 

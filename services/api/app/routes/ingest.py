@@ -4,18 +4,12 @@ from sqlalchemy import text
 
 from app.models.ingest import IngestRequest
 from app.core.db import get_db
+from app.core.tenant_schema import qualified_table, tenant_schema_name
 from app.core.tenant_store import get_tenant_db
 from app.core.tenant_db import get_tenant_session
 from app.utils.hash import hash_payload
 
 router = APIRouter()
-
-SQL = """
-INSERT INTO raw_events
-(brand_id, domain, platform, raw_json, schema_version, payload_hash)
-VALUES
-(:brand_id, :domain, :platform, CAST(:payload AS jsonb), :schema_version, :hash)
-"""
 
 @router.post("/{domain}")
 async def ingest(
@@ -26,8 +20,16 @@ async def ingest(
 ):
     try:
         cfg = await get_tenant_db(master_db, x_tenant_id)
+        raw_events_table = qualified_table(tenant_schema_name(x_tenant_id), "raw_events")
     except Exception:
         raise HTTPException(401, "Invalid tenant")
+
+    sql = f"""
+    INSERT INTO {raw_events_table}
+    (brand_id, domain, platform, raw_json, schema_version, payload_hash)
+    VALUES
+    (:brand_id, :domain, :platform, CAST(:payload AS jsonb), :schema_version, :hash)
+    """
 
     # Serialize JSON ONCE, deterministically
     payload_str = json.dumps(req.payload, sort_keys=True)
@@ -35,7 +37,7 @@ async def ingest(
     async for db in get_tenant_session(cfg):
         try:
             await db.execute(
-                text(SQL),
+                text(sql),
                 {
                     "brand_id": req.brand_id,
                     "domain": domain,

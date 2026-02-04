@@ -1,15 +1,15 @@
-SELECT
-  raw_json->>'id' AS account_id,
-  p->>'id' AS post_id,
+{{ config(materialized='incremental', unique_key='account_id') }}
 
-  p->>'message' AS message,
-  (p->'reactions'->'summary'->>'total_count')::int AS reactions,
-  (p->'comments'->'summary'->>'total_count')::int AS comments,
-  (p->'shares'->>'count')::int AS shares,
-
-  (p->>'created_time')::timestamp AS created_time,
-  ingested_at AS last_updated
-
-FROM {{ source('raw', 'raw_events') }},
-jsonb_array_elements(raw_json->'posts'->'data') p
-WHERE domain = 'social'
+SELECT DISTINCT ON (account_id)
+  account_id,
+  brand_id,
+  platform,
+  name,
+  username,
+  category,
+  followers,
+  website,
+  rating,
+  last_updated
+FROM {{ ref('stg_social_accounts') }}
+ORDER BY account_id, last_updated DESC

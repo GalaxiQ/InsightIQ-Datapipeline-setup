@@ -4,7 +4,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
 from app.core.settings import settings
-from app.routes import schema, ingest, serve, tenant
+from app.routes import schema, ingest, serve, tenant, transform
 
 def setup_logging():
     logging.basicConfig(
@@ -38,6 +38,7 @@ app.include_router(tenant, prefix="/tenant", tags=["Tenant"])
 app.include_router(schema, prefix="/schema", tags=["Schema"])
 app.include_router(ingest, prefix="/ingest", tags=["Ingest"])
 app.include_router(serve, tags=["Serve"])
+app.include_router(transform, prefix="/transform", tags=["Transform"])
 
 @app.on_event("startup")
 async def startup():

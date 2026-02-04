@@ -12,7 +12,7 @@ SELECT
   raw_json->>'website' AS website,
   (raw_json->>'overall_star_rating')::float AS rating,
 
-  ingested_at
+  ingested_at AS last_updated
 FROM {{ source('raw', 'raw_events') }}
 WHERE domain = 'social'
 

@@ -4,6 +4,7 @@ profile: insightiq
 
 models:
   insightiq_dbt:
+    +schema: "{{ var('tenant_schema', target.schema) }}"
     staging:
       +materialized: incremental
     marts:

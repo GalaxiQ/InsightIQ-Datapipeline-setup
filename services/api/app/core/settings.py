@@ -12,6 +12,8 @@ class Settings(BaseSettings):
 
     API_KEY: str | None = None
     ALLOWED_DOMAINS: list[str] = ["social", "web", "crm", "ads"]
+    DBT_PROJECT_DIR: str = "../dbt"
+    DBT_BIN: str = ".venv/bin/dbt"
 
     class Config:
         env_file = ".env"
