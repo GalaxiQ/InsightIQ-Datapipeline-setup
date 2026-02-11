@@ -2,6 +2,7 @@ from fastapi import APIRouter, Header, Depends, HTTPException
 from sqlalchemy import text
 import logging
 
+from app.core.settings import settings, BASE_DIR
 from app.core.db import get_db
 from app.core.tenant_schema import tenant_schema_name
 from app.core.tenant_store import get_tenant_db
@@ -36,7 +37,8 @@ async def bootstrap(
     # -------------------------
     async for db in get_tenant_session(cfg):
         try:
-            with open("sql/bootstrap.sql", "r") as f:
+            sql_path = BASE_DIR / "services/api/sql/bootstrap.sql"
+            with open(sql_path, "r") as f:
                 sql = f.read()
 
             await db.execute(text(f'CREATE SCHEMA IF NOT EXISTS "{tenant_schema}"'))

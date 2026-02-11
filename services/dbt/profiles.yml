@@ -4,9 +4,9 @@ insightiq:
     dev:
       type: postgres
       host: localhost
-      port: 5433
-      user: insightiq
-      password: insightiq
+      port: 5432
+      user: nitizz
+      password: ""
       dbname: brand_intelligence
       schema: analytics
       threads: 4

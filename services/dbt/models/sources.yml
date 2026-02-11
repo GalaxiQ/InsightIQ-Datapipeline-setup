@@ -1,6 +1,16 @@
 version: 2
 sources:
   - name: raw
+    database: "{{ env_var('POSTGRES_DB', 'brand_intelligence') }}"
     schema: "{{ var('tenant_schema', target.schema) }}"
     tables:
+      # Previous global event store (keeping for non-social if needed)
       - name: raw_events
+
+      # New detailed raw tables
+      - name: raw_social_posts
+      - name: raw_social_interactions
+      - name: raw_account_metrics
+      
+      # Sentiment / LLM Output
+      - name: sentiment_results

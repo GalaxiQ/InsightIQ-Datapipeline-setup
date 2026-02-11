@@ -1,0 +1,54 @@
+{
+    "raw_social_posts": [
+        {
+            "platform": "instagram",
+            "brand": "InsightIQ_Demo",
+            "fetched_at": "2023-10-27T10:00:00",
+            "raw_json": {
+                "id": "179839485734",
+                "caption": "Exploring the new API features! #tech #coding",
+                "media_type": "IMAGE",
+                "media_url": "https://s3.amazonaws.com/mock-images/example.jpg",
+                "permalink": "https://instagram.com/p/Cy38d/",
+                "timestamp": "2023-10-27T09:30:00+0000",
+                "like_count": 120,
+                "comments_count": 45,
+                "owner": {
+                    "id": "17841400000000001"
+                }
+            }
+        }
+    ],
+    "raw_social_interactions": [
+        {
+            "platform": "instagram",
+            "fetched_at": "2023-10-27T10:05:00",
+            "raw_json": {
+                "id": "179839485735",
+                "text": "Great update!",
+                "timestamp": "2023-10-27T10:05:00+0000",
+                "from": {
+                    "id": "987654321",
+                    "username": "user123"
+                },
+                "post_id": "179839485734"
+            }
+        }
+    ],
+    "raw_account_metrics": [
+        {
+            "platform": "instagram",
+            "brand": "InsightIQ_Demo",
+            "fetched_at": "2023-10-27T00:00:00",
+            "raw_json": {
+                "date": "2023-10-27",
+                "followers_count": 1500,
+                "following_count": 200,
+                "total_posts": 50,
+                "impressions": 3000,
+                "reach": 2500,
+                "profile_views": 120
+            }
+        }
+    ]
+}
