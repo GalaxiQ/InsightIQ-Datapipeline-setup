@@ -25,11 +25,10 @@ SELECT
         THEN (shares::float / impressions)
         ELSE 0 
     END AS virality_rate,
-    
     CASE 
         WHEN impressions > 0 
         THEN (clicks::float / impressions)
         ELSE 0 
-    END AS ctr
-
+    END AS ctr,
+    now() AS last_updated
 FROM metrics

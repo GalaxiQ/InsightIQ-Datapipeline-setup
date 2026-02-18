@@ -40,8 +40,7 @@ class SentimentWorker:
         tenant_id = t["tenant_id"]
         logger.info(f"Processing tenant: {tenant_id}")
         # Compute schema name for qualifying tables
-        safe_id = tenant_id.strip().lower().replace('-', '_')
-        schema = f"tenant_{safe_id}"
+        schema = tenant_id.strip().lower() # Use tenant_id directly as schema name
         
         async for session in get_tenant_session(t):
             # 3. Fetch unprocessed interactions

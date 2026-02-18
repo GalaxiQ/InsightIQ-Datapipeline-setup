@@ -4,9 +4,11 @@ _SAFE_IDENT = re.compile(r"^[a-z_][a-z0-9_]{0,62}$")
 
 
 def tenant_schema_name(tenant_id: str) -> str:
-    schema = f"tenant_{tenant_id.strip().lower().replace('-', '_')}"
+    # The user expects 'org_....' format, which we use directly as the schema name.
+    # We ensure it's simple lowercase alphanumeric with underscores.
+    schema = tenant_id.strip().lower()
     if not _SAFE_IDENT.fullmatch(schema):
-        raise ValueError("Invalid tenant_id for schema name")
+        raise ValueError(f"Invalid tenant_id '{tenant_id}' for schema name")
     return schema
 
 

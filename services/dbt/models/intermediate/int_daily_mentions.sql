@@ -11,7 +11,7 @@ SELECT
     COUNT(CASE WHEN brand_mentioned THEN 1 END) AS brand_mentions,
     COUNT(CASE WHEN competitor_mentioned THEN 1 END) AS competitor_mentions,
     
-    COUNT(*) AS total_mentions -- Total interactions considered as mentions/activity
-
+    COUNT(*) AS total_mentions, -- Total interactions considered as mentions/activity
+    now() AS last_updated
 FROM interactions
 GROUP BY 1, 2, 3

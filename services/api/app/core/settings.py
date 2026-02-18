@@ -12,9 +12,9 @@ class Settings(BaseSettings):
     ENV: str = "local"
     LOG_LEVEL: str = "INFO"
 
-    # MUST MATCH docker-compose env var
+    # MUST MATCH remote production postgres
     MASTER_DB_URL: str = Field(
-        default="postgresql+asyncpg://nitizz:@localhost:5432/master"
+        default="postgresql+asyncpg://postgres:galaxiq@66.135.22.167:5432/galaxiq_tenants"
     )
 
     API_KEY: str | None = None

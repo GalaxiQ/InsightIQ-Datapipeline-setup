@@ -16,7 +16,7 @@ SELECT
     SUM(shares) AS shares,
     SUM(clicks) AS clicks,
     
-    COUNT(post_id) AS post_count
-
+    COUNT(post_id) AS post_count,
+    now() AS last_updated
 FROM posts
 GROUP BY 1, 2, 3

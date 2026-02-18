@@ -44,7 +44,8 @@ SELECT
         ELSE 0 
     END AS advocacy_rate,
     
-    0.0 AS repeat_advocate_ratio -- Placeholder complexity: requires user-level tracking not available in daily aggregates
+    0.0 AS repeat_advocate_ratio, -- Placeholder complexity
+    now() AS last_updated
 
 FROM response_metrics r
 FULL OUTER JOIN advocacy_data a 

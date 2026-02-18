@@ -1,7 +1,7 @@
 version: 2
 sources:
   - name: raw
-    database: "{{ env_var('POSTGRES_DB', 'brand_intelligence') }}"
+    database: "{{ env_var('POSTGRES_DB', 'galaxiq_tenants') }}"
     schema: "{{ var('tenant_schema', target.schema) }}"
     tables:
       # Previous global event store (keeping for non-social if needed)

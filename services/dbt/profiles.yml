@@ -1,12 +1,12 @@
 insightiq:
-  target: dev
+  target: prod
   outputs:
-    dev:
+    prod:
       type: postgres
-      host: localhost
+      host: 66.135.22.167
       port: 5432
-      user: nitizz
-      password: ""
-      dbname: brand_intelligence
-      schema: analytics
+      user: postgres
+      password: galaxiq
+      dbname: galaxiq_tenants
+      schema: public # This is a fallback; models should use the tenant_schema var
       threads: 4

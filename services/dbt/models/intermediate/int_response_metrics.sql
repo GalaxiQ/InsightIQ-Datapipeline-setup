@@ -53,8 +53,8 @@ SELECT
     
     COALESCE(c.total_user_comments, 0) AS total_user_comments,
     COALESCE(r.brand_replies, 0) AS brand_replies,
-    COALESCE(a.avg_response_time_minutes, 0) AS avg_response_time_minutes
-
+    COALESCE(a.avg_response_time_minutes, 0) AS avg_response_time_minutes,
+    now() AS last_updated
 FROM daily_comments c
 FULL OUTER JOIN daily_replies r 
     ON c.date = r.date AND c.brand = r.brand AND c.platform = r.platform

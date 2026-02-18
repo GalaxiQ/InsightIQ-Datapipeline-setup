@@ -1,10 +1,11 @@
 import logging
 import sys
 from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from app.core.settings import settings
-from app.routes import schema, ingest, serve, tenant, transform, analysis
+from app.routes import schema, ingest, serve, transform, analysis
 
 def setup_logging():
     logging.basicConfig(
@@ -14,12 +15,21 @@ def setup_logging():
     )
 
 setup_logging()
-logger = logging.getLogger("insightiq-api")
+logger = logging.getLogger("insightiq")
 
 app = FastAPI(
     title="InsightIQ Platform",
     version="1.0.0",
     description="Multi-tenant ingestion + analytics + serving platform"
+)
+
+# CORS Configuration
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # In production, specify actual domains
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 @app.exception_handler(Exception)
@@ -34,7 +44,6 @@ async def global_exception_handler(request: Request, exc: Exception):
     )
 
 # Routes
-app.include_router(tenant, prefix="/tenant", tags=["Tenant"])
 app.include_router(schema, prefix="/schema", tags=["Schema"])
 app.include_router(ingest, prefix="/ingest", tags=["Ingest"])
 app.include_router(serve, tags=["Serve"])

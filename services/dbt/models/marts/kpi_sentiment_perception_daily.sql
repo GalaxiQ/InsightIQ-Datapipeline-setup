@@ -70,11 +70,10 @@ SELECT
         THEN (trust_count::float / total_sentiment_records)
         ELSE 0 
     END AS trust_emotion_ratio,
-    
     CASE 
         WHEN total_sentiment_records > 0 
         THEN (excitement_count::float / total_sentiment_records)
         ELSE 0 
-    END AS excitement_ratio
-
+    END AS excitement_ratio,
+    now() AS last_updated
 FROM aggregated

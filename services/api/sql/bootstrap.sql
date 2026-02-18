@@ -214,6 +214,22 @@ CREATE TABLE IF NOT EXISTS sentiment_results (
 CREATE INDEX IF NOT EXISTS idx_sentiment_results_sentiment
     ON sentiment_results(sentiment);
 
+
+/* ============================================================
+   SUMMARY LOGGING / CHECKPOINTING
+   ============================================================ */
+
+CREATE TABLE IF NOT EXISTS summary_checkpoint (
+    id SERIAL PRIMARY KEY,
+    last_summarized_at TIMESTAMP NOT NULL,
+    summary_type TEXT NOT NULL,       -- global_daily | platform_specific
+    metadata JSONB
+);
+
+CREATE INDEX IF NOT EXISTS idx_summary_checkpoint_time
+    ON summary_checkpoint(last_summarized_at);
+
+
 -- CREATE INDEX IF NOT EXISTS idx_rao_brand
 --     ON raw_analysis_output(brand_id);
 

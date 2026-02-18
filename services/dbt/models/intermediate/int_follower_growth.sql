@@ -19,11 +19,10 @@ SELECT
     platform,
     follower_count,
     previous_follower_count,
-    
     CASE 
         WHEN previous_follower_count > 0 
         THEN ((follower_count - previous_follower_count)::float / previous_follower_count)
         ELSE 0 
-    END AS follower_growth_rate
-
+    END AS follower_growth_rate,
+    now() AS last_updated
 FROM lagged

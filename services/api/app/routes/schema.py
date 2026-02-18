@@ -27,9 +27,25 @@ async def bootstrap(
     # Resolve tenant config
     # -------------------------
     try:
-        cfg = await get_tenant_db(master_db, tenant_id)
         tenant_schema = tenant_schema_name(tenant_id)
-    except Exception:
+        # Use master_db to check if the schema exists
+        res = await master_db.execute(
+            text("SELECT schema_name FROM information_schema.schemata WHERE schema_name = :schema"),
+            {"schema": tenant_schema}
+        )
+        if not res.fetchone():
+            raise HTTPException(
+                status_code=404,
+                detail=f"Schema for tenant {tenant_id} does not exist."
+            )
+        
+        # In this new architecture, we use the same connection info as master_db
+        # But we still use get_tenant_db to stay compatible with existing patterns
+        cfg = await get_tenant_db(master_db, tenant_id)
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.exception("Tenant resolution failed")
         raise HTTPException(status_code=401, detail="Invalid tenant")
 
     # -------------------------
